@@ -87,7 +87,8 @@ namespace BrokerClient
 
         protected override object? Invoke(MethodInfo? targetMethod, object?[]? args)
         {
-            var response = NetworkHandler.SendAndReceive(CreatePacket(targetMethod, args));
+            var response = Factory.SendAndReceive(CreatePacket(targetMethod, args),
+                targetMethod.ReturnType == typeof(void));
 
             if (targetMethod.ReturnType == typeof(string))
                 return Encoding.ASCII.GetString(response);
@@ -98,5 +99,7 @@ namespace BrokerClient
 
             return null;
         }
+
+        public ProxyFactory Factory { get; set; }
     }
 }

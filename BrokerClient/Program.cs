@@ -6,19 +6,17 @@ namespace BrokerClient
     {
         static void Main(string[] args)
         {
-            NetworkHandler.Initialize("","");
+            RmiHost.Initialize("http://localhost:8000/getService");
 
+            var factory = RmiHost.GetServiceProxyFactory("test");
 
-            var proxy = DispatchProxy.Create<Test,NetworkProxy>();
+            var proxy = factory.CreateProxy<Test>();
 
-            //var value = proxy.testRoute3("sadads",23,42.23f);
+            proxy.A();
+            Console.WriteLine(proxy.B());
+            Console.WriteLine(proxy.C(12,13,"numbers"));
 
-
-
-            //Console.WriteLine(value);
-
-
-            Console.WriteLine(proxy.test(2,3,15.3f));
+            
         }
     }
 }

@@ -8,14 +8,10 @@ namespace BrokerClient
 {
     internal interface Test
     {
-        public string testRoute3(string a, int b, float c);
-        
+        public void A();
 
-        public string Hello(string a);
+        public string B();
 
-        public int test(int a, int b, float c);
-
-
-
+        public string C(int a, float b, string c);
     }
 }
